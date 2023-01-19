@@ -1,21 +1,22 @@
 package com.example.wellbeingv1;
 
-//import androidx.annotation.NonNull;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-//import android.util.Patterns;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
-/*import android.widget.ProgressBar;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;*/
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class activity_createaccount extends AppCompatActivity {
 
@@ -34,13 +35,13 @@ public class activity_createaccount extends AppCompatActivity {
         createAccountbutton = findViewById(R.id.create_account_button);
 
 
-        //createAccountbutton.setOnClickListener(v-> createAccount());
-        createAccountbutton.setOnClickListener((v)-> startActivity(new Intent(activity_createaccount.this, activity_log_in.class)));
-        Utilities.toaster(activity_createaccount.this,"Account Created!");
+        createAccountbutton.setOnClickListener(v-> createAccount());
+        //createAccountbutton.setOnClickListener((v)-> startActivity(new Intent(activity_createaccount.this, activity_log_in.class)));
+        //Utilities.toaster(activity_createaccount.this,"Account Created!");
 
     }
 
-    /*void createAccount(){
+    void createAccount(){
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String repassword = confirmPasswordEditText.getText().toString();
@@ -94,5 +95,5 @@ public class activity_createaccount extends AppCompatActivity {
             return false;
         }
         return true;
-    }*/
+    }
 }

@@ -16,8 +16,7 @@ public class Utilities {
 
     static CollectionReference getCollectionReferenceForNotes(){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore.getInstance().collection("notes").document(currentUser.getUid()).collection("my_notes");
+        return FirebaseFirestore.getInstance().collection("Notes").document(currentUser.getUid()).collection("my_notes");
 
-        return getCollectionReferenceForNotes();
     }
 }

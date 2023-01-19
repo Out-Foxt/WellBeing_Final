@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,10 +48,10 @@ public class activity_note_detail extends AppCompatActivity {
     }
 
     void saveNoteFirebase(Note note){
-        DocumentReference docRef;
-        docRef = Utilities.getCollectionReferenceForNotes().document();
+        DocumentReference documentReference;
+        documentReference = Utilities.getCollectionReferenceForNotes().document();
 
-        docRef.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
+        documentReference.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
