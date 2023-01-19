@@ -18,7 +18,7 @@ public class activity_homescreen extends AppCompatActivity {
         journalButton = findViewById(R.id.journal_button);
         articleButton = findViewById(R.id.articles_button);
 
-        journalButton.setOnClickListener((v)-> startActivity(new Intent(activity_homescreen.this, activity_homescreen.class)));
+        journalButton.setOnClickListener((v)-> startActivity(new Intent(activity_homescreen.this, activity_journal.class)));
 
         articleButton.setOnClickListener((v)-> startActivity(new Intent(activity_homescreen.this, activity_articles.class)));
 

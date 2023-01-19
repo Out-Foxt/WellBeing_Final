@@ -18,6 +18,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/baseline_post_add_24"
+        android:contentDescription="Add New Note to journal"
         />
 
 
