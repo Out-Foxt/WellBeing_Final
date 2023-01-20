@@ -1,6 +1,7 @@
 package com.example.wellbeingv1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.ContentInfo;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +28,22 @@ public class NoteAdapterUtility extends FirestoreRecyclerAdapter<Note, NoteAdapt
         holder.titleTextView.setText(note.title);
         holder.contentTextView.setText(note.content);
         holder.timestampTextView.setText(Utilities.timeToString(note.timestamp));
+
+        holder.itemView.setOnClickListener((v) -> {
+            Intent intent = new Intent(context, activity_note_detail.class);
+            intent.putExtra("title", note.title);
+            intent.putExtra("content", note.content);
+            String docId = this.getSnapshots().getSnapshot(position).getId();
+            intent.putExtra("docId", docId);
+            context.startActivity(intent);
+        });
     }
 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_note, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_note,
+                parent, false);
         return new viewHolder(view);
     }
 

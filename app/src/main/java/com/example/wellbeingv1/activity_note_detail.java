@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,19 +18,38 @@ import com.google.firebase.firestore.DocumentReference;
 public class activity_note_detail extends AppCompatActivity {
     EditText titleText, contentText;
     ImageButton saveNoteButton;
-
+    TextView pageHeaderView;
+    String title, content, docId;
+    boolean isEdit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_detail);
 
+        if (docId!=null && !docId.isEmpty()){
+            isEdit = true;
+        }
         titleText = findViewById(R.id.title_text);
         contentText = findViewById(R.id.content_text);
 
         saveNoteButton = findViewById(R.id.save_note_button);
 
         saveNoteButton.setOnClickListener((v)-> saveNote());
+
+        pageHeaderView.findViewById(R.id.note_title);
+
+        title = getIntent().getStringExtra("title");
+        content = getIntent().getStringExtra("content");
+        docId = getIntent().getStringExtra("docId");
+        titleText.setText(title);
+        contentText.setText(content);
+
+        if (isEdit){
+            pageHeaderView.setText("Edit Journal Entry");
+        }
+
+
     }
 
     void saveNote(){
@@ -49,7 +69,15 @@ public class activity_note_detail extends AppCompatActivity {
 
     void saveNoteFirebase(Note note){
         DocumentReference documentReference;
-        documentReference = Utilities.getCollectionReferenceForNotes().document();
+        if (isEdit){
+            //update
+            documentReference = Utilities.getCollectionReferenceForNotes().document(docId);
+
+        }else{
+            //new
+            documentReference = Utilities.getCollectionReferenceForNotes().document();
+
+        }
 
         documentReference.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
